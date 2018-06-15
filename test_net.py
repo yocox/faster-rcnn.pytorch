@@ -227,9 +227,12 @@ if __name__ == '__main__':
 
   fasterRCNN.eval()
   empty_array = np.transpose(np.array([[],[],[],[],[]]), (1,0))
+  device = torch.device('cuda:0')
   for i in range(num_images):
 
       data = next(data_iter)
+      data = [_.to(device) for _ in data]
+
       im_data.data.resize_(data[0].size()).copy_(data[0])
       im_info.data.resize_(data[1].size()).copy_(data[1])
       gt_boxes.data.resize_(data[2].size()).copy_(data[2])

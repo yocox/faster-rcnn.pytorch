@@ -31,6 +31,7 @@ ffi = create_extension(
     define_macros=defines,
     relative_to=__file__,
     with_cuda=with_cuda,
+    extra_compile_args=['-std=c99'],
     extra_objects=extra_objects
 )
 
